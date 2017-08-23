@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="APITilPython.py">
+    <Compile Include="AtLæsefraJsonOgDelete.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataVisualization.py" />
@@ -53,6 +53,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="plot_lle_digits.py" />
+    <Compile Include="StationWebAPI.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
