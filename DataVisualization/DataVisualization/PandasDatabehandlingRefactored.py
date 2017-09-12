@@ -2,41 +2,42 @@ import pandas as pd
 import requests
 import sys
 
-print(args[0])
+#print(args[0])
 
 #Først henter vi den ønskede fil:
 
 parameters = {"from": "2017-07-18 00:00:00", "to": "2017-07-20 00:00:00"}
-response = requests.get("http://adm-trafik-01.odknet.dk/api/Reader/GetMeasurementsBetweenDates", params=parameters)
-print(response.status_code)
-data = pd.read_json(response.content)
+#response = requests.get("http://adm-trafik-01.odknet.dk/api/Reader/GetMeasurementsBetweenDates", params=parameters)
+#print(response.status_code)
+#data = pd.read_json(response.content)
 
-print(data.head)   # pd.read_table('C:\\Users\\jaarn\\Desktop\\Falenmaj.txt')
+#print(data.head)   
+data = pd.read_table('C:\\Users\\jaarn\\Desktop\\Falenmaj.txt')
 
 #preprocessing af data:
 #gør data giv kolonnen et andet navn en klasse:
-#gør gør dateTime kolonnen til rent faktisk date time objekter:
+#gør gør datetime kolonnen til rent faktisk date time objekter:
 
-#data.rename(columns = {'type' : 'carType'}, inplace = True)
+#data.rename(columns = {'type' : 'cartype'}, inplace = True)
 
-data['dateTime'] = pd.to_datetime(data.dateTime)
-print(data.dateTime)
+data['datetime'] = pd.to_datetime(data.datetime)
+print(data.datetime)
 
 def GetFile(filepath):
     data = pd.read_table(filepath)
-    data.rename(columns = {'class' : 'carType'}, inplace = True)
-    data['dateTime'] = pd.to_datetime(dataframe_all.dateTime)
+    data.rename(columns = {'class' : 'cartype'}, inplace = True)
+    data['datetime'] = pd.to_datetime(dataframe_all.datetime)
     print("File Loaded and raring to go")
 
 
 def GetDataByDayName(dayOfWeek):
-    res = data.dateTime.dt.weekday_name == dayOfWeek
+    res = data.datetime.dt.weekday_name == dayOfWeek
     newdata = data[res]
     return newdata
 
 
-def GetDataByClass(carType):
-    return data[data.carType == carType]
+def GetDataByClass(cartype):
+    return data[data.cartype == cartype]
 
 def GetAverageSpeed(dataset):
     if len(dataset)>0:
@@ -49,9 +50,9 @@ def GetAverageSpeed(dataset):
 
 def GetAverageSpeedInTimeInterval(time1, time2, dataset = None):
     if dataset is None:
-        return GetAverageSpeed(data[(data.dateTime.dt.hour>time1) & (data.dateTime.dt.hour<time2)])
+        return GetAverageSpeed(data[(data.datetime.dt.hour>time1) & (data.datetime.dt.hour<time2)])
     else:
-        return GetAverageSpeed(dataset[(dataset.dateTime.dt.hour>=time1) & (dataset.dateTime.dt.hour<time2)])
+        return GetAverageSpeed(dataset[(dataset.datetime.dt.hour>=time1) & (dataset.datetime.dt.hour<time2)])
 
 def HowManyMeasurements(dataset):
     return len(dataset)
@@ -59,25 +60,25 @@ def HowManyMeasurements(dataset):
 
 """
 Each parameter can be left out.
-carType:int is the class of car you want, lane:int, hour1:int (inclusive) defines the hour of the day from when you want the data, hour2:int (exclusive) is the max hour you want data from.
+cartype:int is the class of car you want, lane:int, hour1:int (inclusive) defines the hour of the day from when you want the data, hour2:int (exclusive) is the max hour you want data from.
 """
-def GetData(carType = None, lane = None, hour1 = None, hour2 = None, day = None):
+def GetData(cartype = None, lane = None, hour1 = None, hour2 = None, day = None):
     res = data
-    if carType is not None:
-        res = res[res.carType == carType]
+    if cartype is not None:
+        res = res[res.cartype == cartype]
     if lane is not None:
         res = res[res.lane == lane]
     if hour1 is not None:
-        res = res[res.dateTime.dt.hour>= hour1]
+        res = res[res.datetime.dt.hour>= hour1]
     if hour2 is not None:
-        res = res[res.dateTime.dt.hour< hour2]
+        res = res[res.datetime.dt.hour< hour2]
     if day is not None:
-        res = res[res.dateTime.dt.weekday_name == day]
+        res = res[res.datetime.dt.weekday_name == day]
     return res
 
 
 def GetAllAverageSpeedInTimeInterval(time1, time2):
-    print("Printing average speed btwn 2 time intervals and a certain carType", time1,"-" ,time2)
+    print("Printing average speed btwn 2 time intervals and a certain cartype", time1,"-" ,time2)
     print("class 1: ", GetAverageSpeedInTimeInterval(time1,time2,GetDataByClass(1)) )
     print("class 2: ", GetAverageSpeedInTimeInterval(time1,time2,GetDataByClass(2)) )
     print("class 3: ", GetAverageSpeedInTimeInterval(time1,time2,GetDataByClass(3)) )
@@ -113,7 +114,7 @@ print (MeasureSunday)
 
 
 
-'''
+
 print("Printing speed for class 1 through 9")
 
 print(GetAverageSpeed(GetDataByClass(1)))
@@ -165,12 +166,12 @@ for x in range(0,24):
 
     
 
-#print(data[(data.dateTime.dt.hour>7) & (data.dateTime.dt.hour<10)])
+#print(data[(data.datetime.dt.hour>7) & (data.datetime.dt.hour<10)])
 
-#print(GetAverageSpeed(data[(data.dateTime.dt.hour>7) & (data.dateTime.dt.hour<10)]))
-
-
+#print(GetAverageSpeed(data[(data.datetime.dt.hour>7) & (data.datetime.dt.hour<10)]))
 
 
-'''
+
+
+
     

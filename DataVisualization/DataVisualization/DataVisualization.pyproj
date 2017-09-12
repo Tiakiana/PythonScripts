@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>77ca6750-abc1-49b2-a483-39cd3323f445</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>LarsDataBehandling.py</StartupFile>
+    <StartupFile>FileCleanup.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,16 +21,29 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AtLæsefraJsonOgDelete.py">
+    <Compile Include="AnomalyDetection.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="APITilPython.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AverageOfDays.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AverageOfDaysOptimum.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataVisualization.py" />
+    <Compile Include="FileCleanup.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GetMax.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GetMin.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GettingStarted.py" />
     <Compile Include="HowManyMeasurements.py">
       <SubType>Code</SubType>
     </Compile>
@@ -43,7 +56,14 @@
     <Compile Include="LarsDataBehandling.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mas.py" />
     <Compile Include="MeasureAvgSpeed.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NumentaStuff.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OutlierDetection.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PandasDatabehandlingRefactored.py">
@@ -53,7 +73,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="plot_lle_digits.py" />
-    <Compile Include="StationWebAPI.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
